@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+amqp = "*"
+asgiref = "*"
+billiard = "*"
+celery = "*"
+django = "*"
+django-cors-headers = "*"
+django-filter = "*"
+django-widget-tweaks = "*"
+djangorestframework = "*"
+python-decouple = "*"
+kombu = "*"
+pytz = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
