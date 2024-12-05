@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status 
 from .models import Product
 from .serializers import ProductSerializer
+from .paginators import StandardPagination
 # Create your views here.
 
 class ProductListView(APIView):
@@ -18,10 +19,10 @@ class ProductListView(APIView):
             in_stock = in_stock.lower() == 'true'
             products = products.filter(stock__gt=0) if in_stock else products.filter(stock=0)
         
-        serializer = ProductSerializer(products, many=True)
-        
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        paginator = StandardPagination()
+        page = paginator.paginate_queryset(products, request)
+        serializer = ProductSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     def post(self, request, format=None):
         data = request.data
