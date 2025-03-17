@@ -13,9 +13,13 @@ export default defineConfig({
   server:{
     port: 3000
   },
+  define: {
+    'process.env': {}  // or provide the necessary env variables
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
 })
+
